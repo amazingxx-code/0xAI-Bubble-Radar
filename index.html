@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="AI-powered bubble tracking for leading stocks.">
+  <title>0xAI Bubble Radar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="0xAI Bubble Radar home">
+      <span class="brand-mark">0x</span><span>AI</span>
+    </a>
+    <nav>
+      <a href="#latest">Latest</a>
+      <a href="#archive">Archive</a>
+      <a href="#methodology">Methodology</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="eyebrow"><span class="live-dot"></span> Public market signal archive</div>
+      <h1>0xAI<br><span>Bubble Radar</span></h1>
+      <p class="hero-copy">AI-powered tracking of bubble conditions across the market's most closely watched stocks.</p>
+      <div class="hero-actions">
+        <a class="button primary" href="#latest">View latest reading</a>
+        <a class="button secondary" id="subscribeTop" href="#subscribe">Subscribe for updates</a>
+      </div>
+      <p class="proprietary">Powered by the proprietary 0xAI algorithm.</p>
+    </section>
+
+    <section class="section latest-section" id="latest">
+      <div class="section-heading">
+        <div>
+          <p class="kicker">Latest reading</p>
+          <h2 id="latestTitle">Loading the latest signal…</h2>
+        </div>
+        <span class="status-pill" id="latestStatus">Loading</span>
+      </div>
+      <div class="latest-grid">
+        <div class="image-frame latest-frame">
+          <img id="latestImage" alt="Latest 0xAI Bubble Radar reading">
+        </div>
+        <aside class="signal-details">
+          <div class="detail"><span>Date</span><strong id="latestDate">—</strong></div>
+          <div class="detail"><span>Ticker</span><strong id="latestTicker">—</strong></div>
+          <div class="detail"><span>Closing price</span><strong id="latestPrice">—</strong></div>
+          <div class="detail"><span>Bubble condition</span><strong id="latestCondition">—</strong></div>
+          <p>One closely watched stock is analyzed each trading day. Every published reading remains in the public archive.</p>
+          <a class="text-link" href="#archive">Explore all readings →</a>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section scale-section" id="methodology">
+      <div class="section-heading compact">
+        <div>
+          <p class="kicker">Methodology</p>
+          <h2>How to read the radar</h2>
+        </div>
+      </div>
+      <div class="scale-grid">
+        <div class="image-frame">
+          <img src="assets/bubble_radar_scale.png" alt="0xAI Bubble Radar five-level scale">
+        </div>
+        <div class="scale-copy">
+          <p>The radar classifies detected bubble conditions into five levels, ranging from minimal to extreme.</p>
+          <ol class="scale-list">
+            <li><i class="green"></i><span><b>Minimal Bubble</b>Very limited bubble characteristics detected.</span></li>
+            <li><i class="blue"></i><span><b>Low Bubble</b>Bubble pressure remains relatively contained.</span></li>
+            <li><i class="gray"></i><span><b>Neutral</b>No clear bubble extreme detected.</span></li>
+            <li><i class="orange"></i><span><b>Elevated Bubble</b>Bubble pressure is becoming more pronounced.</span></li>
+            <li><i class="red"></i><span><b>Extreme Bubble</b>Exceptional bubble conditions detected.</span></li>
+          </ol>
+          <div class="note">A high bubble reading does not necessarily imply an immediate price decline. The radar measures bubble conditions, not short-term market timing.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section archive-section" id="archive">
+      <div class="section-heading archive-heading">
+        <div>
+          <p class="kicker">Public record</p>
+          <h2>Historical readings</h2>
+        </div>
+        <div class="filters">
+          <label>Ticker<select id="tickerFilter"><option value="ALL">All tickers</option></select></label>
+          <label>Status<select id="statusFilter"><option value="ALL">All statuses</option></select></label>
+        </div>
+      </div>
+      <div class="gallery" id="gallery"></div>
+      <p class="empty" id="emptyState" hidden>No readings match these filters.</p>
+    </section>
+
+    <section class="subscribe" id="subscribe">
+      <p class="kicker">0xAI Market Insights</p>
+      <h2>See beyond the price.</h2>
+      <p>Follow new Bubble Radar readings and deeper market context as the public record grows.</p>
+      <a class="button light" id="subscribeBottom" href="https://substack.com" target="_blank" rel="noopener">Subscribe on Substack</a>
+    </section>
+
+    <section class="disclaimer">
+      <strong>Research disclosure</strong>
+      <p>For research and informational purposes only. Nothing presented here constitutes investment advice, a recommendation, or an offer to buy or sell any security.</p>
+    </section>
+  </main>
+
+  <footer><span>© 2026 0xAI</span><span>Markets generate endless opinions. 0xAI tracks what changes beneath them.</span></footer>
+  <script src="script.js"></script>
+</body>
+</html>

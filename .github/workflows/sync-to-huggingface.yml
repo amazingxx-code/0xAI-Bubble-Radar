@@ -12,12 +12,34 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
-      - name: Sync to Hugging Face Space
-        uses: huggingface/hub-sync@v0.1.0
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          github_repo_id: ${{ github.repository }}
-          huggingface_repo_id: 0xAIML/0xAI-Bubble-Radar
-          hf_token: ${{ secrets.HF_TOKEN }}
-          space_sdk: static
+          python-version: "3.11"
+
+      - name: Install Hugging Face Hub
+        run: python -m pip install --upgrade huggingface_hub
+
+      - name: Upload to existing Hugging Face Space
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          python - <<'PY'
+          import os
+          from huggingface_hub import HfApi
+
+          api = HfApi(token=os.environ["HF_TOKEN"])
+          api.upload_folder(
+              folder_path=".",
+              repo_id="0xAIML/0xAI-Bubble-Radar",
+              repo_type="space",
+              ignore_patterns=[
+                  ".git/*",
+                  ".github/*",
+                  "__pycache__/*",
+              ],
+              commit_message="Sync from GitHub Actions",
+          )
+          PY

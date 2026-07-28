@@ -6,9 +6,9 @@ const STATUS_COLORS = {MINIMAL:"#07963b",LOW:"#0871df",NEUTRAL:"#858b94",ELEVATE
 let readings=[];
 
 function parseReading(file){
-  const match=file.name.match(/^(\d{4}-\d{2}-\d{2})_([A-Za-z0-9.-]+)_([0-9.]+)_(MINIMAL|LOW|NEUTRAL|ELEVATED|EXTREME)\.(png|jpg|jpeg|webp)$/i);
+  const match=file.name.match(/^(\d{4}-\d{2}-\d{2})_([A-Za-z0-9.-]+)_(?:([0-9.]+)_)?(MINIMAL|LOW|NEUTRAL|ELEVATED|EXTREME)\.(png|jpg|jpeg|webp)$/i);
   if(!match)return null;
-  return{date:match[1],ticker:match[2].toUpperCase(),price:match[3],status:match[4].toUpperCase(),url:file.download_url,name:file.name};
+  return{date:match[1],ticker:match[2].toUpperCase(),price:match[3]||null,status:match[4].toUpperCase(),url:file.download_url,name:file.name};
 }
 function prettyDate(value){return new Intl.DateTimeFormat("en-US",{year:"numeric",month:"long",day:"numeric",timeZone:"UTC"}).format(new Date(`${value}T00:00:00Z`));}
 function setLatest(r){
@@ -16,7 +16,7 @@ function setLatest(r){
   document.querySelector("#latestTitle").textContent=`${r.ticker} · ${STATUS_LABELS[r.status]}`;
   document.querySelector("#latestDate").textContent=prettyDate(r.date);
   document.querySelector("#latestTicker").textContent=r.ticker;
-  document.querySelector("#latestPrice").textContent=`$${r.price}`;
+  document.querySelector("#latestPrice").textContent=r.price?`$${r.price}`:"See card";
   document.querySelector("#latestCondition").textContent=STATUS_LABELS[r.status];
   const pill=document.querySelector("#latestStatus");pill.textContent=STATUS_LABELS[r.status];pill.style.color=STATUS_COLORS[r.status];pill.style.background=`${STATUS_COLORS[r.status]}16`;
 }
